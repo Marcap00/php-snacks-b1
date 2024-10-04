@@ -238,13 +238,16 @@ $classi = [
 ];
 
 
-$votoSuff = $_GET['voto-suff'];
-$classiFiltrate;
+$classiFiltrate = [];
 
-if (isset($votoSuff) && $votoSuff === 'on') {
+if (isset($_GET['voto-suff']) && $_GET['voto-suff'] === 'on') {
+    $classiFiltrate = [];
     foreach ($classi as $classe => $studenti) {
+        $classiFiltrate[$classe] = [];
         foreach ($studenti as $studente) {
             if ($studente['voto_medio'] >= 6) {
+                // $classiFiltrate[$classe] = $studente;
+                array_push($classiFiltrate[$classe], $studente);
             }
         }
     }
