@@ -17,31 +17,77 @@ $currentArray;
 // } else {
 //     $classiFiltrate = $classi;
 // }
-
-
-if (isset($_GET['voto-max']) && !empty($_GET['voto-max']) && $_GET['voto-max'] >= 1 && $_GET['voto-max'] <= 10) {
-    $classiFiltrate = [];
-    foreach ($classi as $classe => $studenti) {
-        $classiFiltrate[$classe] = [];
-        foreach ($studenti as $studente) {
-            if ($studente['voto_medio'] <= $_GET['voto-max']) {
-                array_push($classiFiltrate[$classe], $studente);
+if ($_GET['voto-min'] <= $_GET['voto-max'] && isset($_GET['voto-min']) && isset($_GET['voto-max']) && !empty($_GET['voto-min']) && !empty($_GET['voto-max'])) {
+    // Controllo del voto massimo
+    if ($_GET['voto-max'] >= 1 && $_GET['voto-max'] <= 10) {
+        $classiVotoMax = [];
+        foreach ($classi as $classe => $studenti) {
+            $classiVotoMax[$classe] = [];
+            foreach ($studenti as $studente) {
+                if ($studente['voto_medio'] <= $_GET['voto-max']) {
+                    array_push($classiVotoMax[$classe], $studente);
+                }
             }
+            $classiFiltrate = $classiVotoMax;
+        }
+    }
+    // Controllo del voto minimo
+    if ($_GET['voto-min'] >= 1 && $_GET['voto-min'] <= 10) {
+        $classiVotoMin = [];
+        foreach ($classiFiltrate as $classe => $studenti) {
+            $classiVotoMin[$classe] = [];
+            foreach ($studenti as $studente) {
+                if ($studente['voto_medio'] >= $_GET['voto-min']) {
+                    array_push($classiVotoMin[$classe], $studente);
+                }
+            }
+            $classiFiltrate = $classiVotoMin;
         }
     }
 } else {
     $classiFiltrate = $classi;
 }
+
+// Controllo del linguaggio preferito
 if (isset($_GET['fav-lang']) && !empty($_GET['fav-lang'])) {
-    $currentArray = [];
+    $classiFavLang = [];
     foreach ($classiFiltrate as $classe => $studenti) {
-        $currentArray[$classe] = [];
+        $classiFavLang[$classe] = [];
         foreach ($studenti as $studente) {
             if (strtolower($studente['linguaggio_preferito']) === strtolower($_GET['fav-lang'])) {
-                array_push($currentArray[$classe], $studente);
+                array_push($classiFavLang[$classe], $studente);
             }
         }
-        $classiFiltrate = $currentArray;
+        $classiFiltrate = $classiFavLang;
+    }
+}
+// Controllo dell'età dello studente
+if (isset($_GET['age']) && !empty($_GET['age']) && $_GET['age'] >= 15 && $_GET['age'] <= 100) {
+    $classiAge = [];
+    foreach ($classiFiltrate as $classe => $studenti) {
+        $classiAge[$classe] = [];
+        foreach ($studenti as $studente) {
+            if ($studente['anni'] <= $_GET['age']) {
+                array_push($classiAge[$classe], $studente);
+            }
+        }
+        $classiFiltrate = $classiAge;
+    }
+}
+// Controllo del testo cercato
+if (isset($_GET['text-searched']) && !empty($_GET['text-searched'])) {
+    $classiName = [];
+    foreach ($classiFiltrate as $classe => $studenti) {
+        $classiName[$classe] = [];
+        foreach ($studenti as $studente) {
+            $formattedName = strtolower($studente['nome']);
+            $formattedSurname = strtolower($studente['cognome']);
+            $formattedText = strtolower($_GET['text-searched']);
+            if (str_contains($formattedName, $formattedText) || str_contains($formattedSurname, $formattedText)) {
+                array_push($classiName[$classe], $studente);
+            }
+        }
+        $classiFiltrate = $classiName;
     }
 }
 
@@ -62,7 +108,7 @@ if (isset($_GET['fav-lang']) && !empty($_GET['fav-lang'])) {
 
 <body>
     <div class="container">
-        <form class="form-control p-3 mb-3" action="snacks4.php" method="GET">
+        <form class="form-control p-3 my-3 w-50 mx-auto" action="snacks4.php" method="GET">
             <h3 class="fw-semibold">Filtra:</h3>
             <!-- <div class="form-check mb-3">
                 <input class="form-check-input" type="checkbox" name="voto-suff" id="flexCheckDefault">
@@ -70,23 +116,44 @@ if (isset($_GET['fav-lang']) && !empty($_GET['fav-lang'])) {
                     Voto sufficiente
                 </label>
             </div> -->
-            <div class="w-25 mb-3">
-                <label class="form-label" for="flexCheckDefault">
+            <div class="w-50 mb-3">
+                <label class="form-label" for="text-searched">
+                    Cerca:
+                </label>
+                <input class="form-control" id="text-searched" type="text-searched" name="text-searched">
+            </div>
+            <div class="w-50 mb-3">
+                <label class="form-label" for="age">
+                    Età massima:
+                </label>
+                <input class="form-control" id="age" type="number" name="age" min="15" max="100"
+                    value="<?= $_GET['age'] ?>">
+            </div>
+            <div class="w-50 mb-3">
+                <label class="form-label" for="voto-max">
                     Voto Massimo:
                 </label>
-                <input class="form-control" type="number" name="voto-max" min="1" max="10">
+                <input class="form-control" id="voto-max" type="number" name="voto-max" value="<?= $_GET['voto-max'] ?>"
+                    min="1" max="10">
             </div>
-            <div class="w-25 mb-3">
-                <label class="form-label" for="flexCheckDefault">
+            <div class="w-50 mb-3">
+                <label class="form-label" for="voto-min">
+                    Voto Minimo:
+                </label>
+                <input class="form-control" id="voto-min" type="number" name="voto-min" value="<?= $_GET['voto-min'] ?>"
+                    min="1" max="10">
+            </div>
+            <div class="w-50 mb-3">
+                <label class="form-label" for="fav-lang">
                     Linguaggio preferito:
                 </label>
-                <input class="form-control" type="text" name="fav-lang">
+                <input type="text" class="form-control" id="fav-lang" name="fav-lang" value="<?= $_GET['fav-lang'] ?>">
             </div>
             <button type="submit" class="btn btn-primary px-4 me-2">Filtra</button>
             <button type="reset" class="btn btn-warning px-4">Reset</button>
         </form>
         <?php foreach ($classiFiltrate as $classe => $studenti) { ?>
-            <div class="card p-3 my-4 rounded-3">
+            <div class="card p-4  my-4 rounded-3 mx-auto">
                 <h2><?= $classe ?></h2>
                 <div class="row">
                     <?php foreach ($studenti as $studente) { ?>
