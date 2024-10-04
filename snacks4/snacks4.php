@@ -236,6 +236,21 @@ $classi = [
         ],
     ],
 ];
+
+
+$votoSuff = $_GET['voto-suff'];
+$classiFiltrate;
+
+if (isset($votoSuff) && $votoSuff === 'on') {
+    foreach ($classi as $classe => $studenti) {
+        foreach ($studenti as $studente) {
+            if ($studente['voto_medio'] >= 6) {
+            }
+        }
+    }
+} else {
+    $classiFiltrate = $classi;
+}
 ?>
 
 <!DOCTYPE html>
@@ -244,7 +259,7 @@ $classi = [
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snack 4</title>\
+    <title>Snack 4</title>
     <!-- Bootstrap 5 -->
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css'
         integrity='sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg=='
@@ -253,8 +268,19 @@ $classi = [
 
 <body>
     <div class="container">
-        <?php foreach ($classi as $classe => $studenti) { ?>
-            <div class="card p-3 my-3 rounded-3">
+        <form class="form-control p-3 mb-3" action="snacks4.php" method="GET">
+            <h3 class="fw-semibold">Filtra:</h3>
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" name="voto-suff" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Voto sufficiente
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary px-4 me-2">Filtra</button>
+            <button type="reset" class="btn btn-warning px-4">Reset</button>
+        </form>
+        <?php foreach ($classiFiltrate as $classe => $studenti) { ?>
+            <div class="card p-3 my-4 rounded-3">
                 <h2><?= $classe ?></h2>
                 <div class="row">
                     <?php foreach ($studenti as $studente) { ?>
