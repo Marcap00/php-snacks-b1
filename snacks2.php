@@ -5,7 +5,7 @@ $name = $_GET['name'];
 $mail = $_GET['mail'];
 $age = $_GET['age'];
 
-if (strlen($name) > 3 && is_numeric($age)) {
+if (strlen($name) > 3 && is_numeric($age) && (str_contains($mail, "@") && str_contains($mail, "."))) {
     echo 'Accesso riuscito';
 } else {
     echo 'Accesso negato';
