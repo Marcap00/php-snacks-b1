@@ -4,6 +4,12 @@
 $name = $_GET['name'];
 $mail = $_GET['mail'];
 $age = $_GET['age'];
+
+if (strlen($name) > 3) {
+    echo 'Accesso riuscito';
+} else {
+    echo 'Accesso negato';
+}
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +37,6 @@ $age = $_GET['age'];
         </div>
         <button class="btn btn-primary" type="submit">Submit</button>
     </form>
-
 </body>
 
 </html>
