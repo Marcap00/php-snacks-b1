@@ -238,15 +238,30 @@ $classi = [
 ];
 
 
-$classiFiltrate = [];
+$classiFiltrate;
 
-if (isset($_GET['voto-suff']) && $_GET['voto-suff'] === 'on') {
+// if (isset($_GET['voto-suff']) && $_GET['voto-suff'] === 'on') {
+//     $classiFiltrate = [];
+//     foreach ($classi as $classe => $studenti) {
+//         $classiFiltrate[$classe] = [];
+//         foreach ($studenti as $studente) {
+//             if ($studente['voto_medio'] >= 6) {
+//                 // $classiFiltrate[$classe] = $studente;
+//                 array_push($classiFiltrate[$classe], $studente);
+//             }
+//         }
+//     }
+// } else {
+//     $classiFiltrate = $classi;
+// }
+
+
+if (isset($_GET['voto-max']) && !empty($_GET['voto-max'])) {
     $classiFiltrate = [];
     foreach ($classi as $classe => $studenti) {
         $classiFiltrate[$classe] = [];
         foreach ($studenti as $studente) {
-            if ($studente['voto_medio'] >= 6) {
-                // $classiFiltrate[$classe] = $studente;
+            if ($studente['voto_medio'] <= $_GET['voto-max']) {
                 array_push($classiFiltrate[$classe], $studente);
             }
         }
@@ -273,11 +288,17 @@ if (isset($_GET['voto-suff']) && $_GET['voto-suff'] === 'on') {
     <div class="container">
         <form class="form-control p-3 mb-3" action="snacks4.php" method="GET">
             <h3 class="fw-semibold">Filtra:</h3>
-            <div class="form-check mb-3">
+            <!-- <div class="form-check mb-3">
                 <input class="form-check-input" type="checkbox" name="voto-suff" id="flexCheckDefault">
                 <label class="form-check-label" for="flexCheckDefault">
                     Voto sufficiente
                 </label>
+            </div> -->
+            <div class="w-25 mb-3">
+                <label class="form-label" for="flexCheckDefault">
+                    Voto Massimo:
+                </label>
+                <input class="form-control" type="number" name="voto-max" id="flexCheckDefault" min="1" max="10">
             </div>
             <button type="submit" class="btn btn-primary px-4 me-2">Filtra</button>
             <button type="reset" class="btn btn-warning px-4">Reset</button>
