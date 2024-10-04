@@ -17,7 +17,7 @@ $currentArray;
 // } else {
 //     $classiFiltrate = $classi;
 // }
-if ($_GET['voto-min'] <= $_GET['voto-max'] && isset($_GET['voto-min']) && isset($_GET['voto-max']) && !empty($_GET['voto-min']) && !empty($_GET['voto-max'])) {
+if (isset($_GET['voto-min']) && isset($_GET['voto-max']) && $_GET['voto-min'] < $_GET['voto-max'] && !empty($_GET['voto-min']) && !empty($_GET['voto-max'])) {
     // Controllo del voto massimo
     if ($_GET['voto-max'] >= 1 && $_GET['voto-max'] <= 10) {
         $classiVotoMax = [];
@@ -61,19 +61,36 @@ if (isset($_GET['fav-lang']) && !empty($_GET['fav-lang'])) {
         $classiFiltrate = $classiFavLang;
     }
 }
-// Controllo dell'età dello studente
-if (isset($_GET['age']) && !empty($_GET['age']) && $_GET['age'] >= 15 && $_GET['age'] <= 100) {
-    $classiAge = [];
-    foreach ($classiFiltrate as $classe => $studenti) {
-        $classiAge[$classe] = [];
-        foreach ($studenti as $studente) {
-            if ($studente['anni'] <= $_GET['age']) {
-                array_push($classiAge[$classe], $studente);
+
+if (isset($_GET['max-age']) && isset($_GET['min-age']) && $_GET['max-age'] > $_GET['min-age'] && !empty($_GET['max-age']) && !empty($_GET['min-age'])) {
+    // Controllo l'età massima dello studente
+    if ($_GET['max-age'] >= 15 && $_GET['max-age'] <= 100) {
+        $classiAge = [];
+        foreach ($classiFiltrate as $classe => $studenti) {
+            $classiAge[$classe] = [];
+            foreach ($studenti as $studente) {
+                if ($studente['anni'] <= $_GET['max-age']) {
+                    array_push($classiAge[$classe], $studente);
+                }
             }
+            $classiFiltrate = $classiAge;
         }
-        $classiFiltrate = $classiAge;
+    }
+    // Controllo l'età minima dello studente
+    if ($_GET['min-age'] >= 15 && $_GET['min-age'] <= 100) {
+        $classiAge = [];
+        foreach ($classiFiltrate as $classe => $studenti) {
+            $classiAge[$classe] = [];
+            foreach ($studenti as $studente) {
+                if ($studente['anni'] >= $_GET['min-age']) {
+                    array_push($classiAge[$classe], $studente);
+                }
+            }
+            $classiFiltrate = $classiAge;
+        }
     }
 }
+
 // Controllo del testo cercato
 if (isset($_GET['text-searched']) && !empty($_GET['text-searched'])) {
     $classiName = [];
@@ -120,28 +137,40 @@ if (isset($_GET['text-searched']) && !empty($_GET['text-searched'])) {
                 <label class="form-label" for="text-searched">
                     Cerca:
                 </label>
-                <input class="form-control" id="text-searched" type="text-searched" name="text-searched">
+                <input class="form-control" id="text-searched" type="text-searched" name="text-searched"
+                    value="<?= $_GET['text-searched'] ?>">
             </div>
-            <div class="w-50 mb-3">
-                <label class="form-label" for="age">
-                    Età massima:
-                </label>
-                <input class="form-control" id="age" type="number" name="age" min="15" max="100"
-                    value="<?= $_GET['age'] ?>">
+            <div class="d-flex gap-3">
+                <div class="w-50 mb-3">
+                    <label class="form-label" for="max-age">
+                        Età massima:
+                    </label>
+                    <input class="form-control" id="max-age" type="number" name="max-age" min="15" max="100"
+                        value="<?= $_GET['max-age'] ?>">
+                </div>
+                <div class="w-50 mb-3">
+                    <label class="form-label" for="min-age">
+                        Età minima:
+                    </label>
+                    <input class="form-control" id="min-age" type="number" name="min-age" min="15" max="100"
+                        value="<?= $_GET['min-age'] ?>">
+                </div>
             </div>
-            <div class="w-50 mb-3">
-                <label class="form-label" for="voto-max">
-                    Voto Massimo:
-                </label>
-                <input class="form-control" id="voto-max" type="number" name="voto-max" value="<?= $_GET['voto-max'] ?>"
-                    min="1" max="10">
-            </div>
-            <div class="w-50 mb-3">
-                <label class="form-label" for="voto-min">
-                    Voto Minimo:
-                </label>
-                <input class="form-control" id="voto-min" type="number" name="voto-min" value="<?= $_GET['voto-min'] ?>"
-                    min="1" max="10">
+            <div class="d-flex gap-3">
+                <div class="w-50 mb-3">
+                    <label class="form-label" for="voto-max">
+                        Voto Massimo:
+                    </label>
+                    <input class="form-control" id="voto-max" type="number" name="voto-max" min="1" max="10"
+                        value="<?= $_GET['voto-max'] ?>">
+                </div>
+                <div class="w-50 mb-3">
+                    <label class="form-label" for="voto-min">
+                        Voto Minimo:
+                    </label>
+                    <input class="form-control" id="voto-min" type="number" name="voto-min" min="1" max="10"
+                        value="<?= $_GET['voto-min'] ?>">
+                </div>
             </div>
             <div class="w-50 mb-3">
                 <label class="form-label" for="fav-lang">
