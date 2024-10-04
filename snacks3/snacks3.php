@@ -44,7 +44,6 @@ $db = [
             <li>
                 <?= $element['name'] . ' ' . $element['lastname']; ?>
             </li>
-
             <?php } ?>
         </ul>
     </div>
