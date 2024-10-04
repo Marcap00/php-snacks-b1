@@ -239,7 +239,7 @@ $classi = [
 
 
 $classiFiltrate;
-
+$currentArray;
 // if (isset($_GET['voto-suff']) && $_GET['voto-suff'] === 'on') {
 //     $classiFiltrate = [];
 //     foreach ($classi as $classe => $studenti) {
@@ -256,7 +256,7 @@ $classiFiltrate;
 // }
 
 
-if (isset($_GET['voto-max']) && !empty($_GET['voto-max'])) {
+if (isset($_GET['voto-max']) && !empty($_GET['voto-max']) && $_GET['voto-max'] >= 1 && $_GET['voto-max'] <= 10) {
     $classiFiltrate = [];
     foreach ($classi as $classe => $studenti) {
         $classiFiltrate[$classe] = [];
@@ -269,6 +269,19 @@ if (isset($_GET['voto-max']) && !empty($_GET['voto-max'])) {
 } else {
     $classiFiltrate = $classi;
 }
+if (isset($_GET['fav-lang']) && !empty($_GET['fav-lang'])) {
+    $currentArray = [];
+    foreach ($classiFiltrate as $classe => $studenti) {
+        $currentArray[$classe] = [];
+        foreach ($studenti as $studente) {
+            if (strtolower($studente['linguaggio_preferito']) === strtolower($_GET['fav-lang'])) {
+                array_push($currentArray[$classe], $studente);
+            }
+        }
+        $classiFiltrate = $currentArray;
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -298,7 +311,13 @@ if (isset($_GET['voto-max']) && !empty($_GET['voto-max'])) {
                 <label class="form-label" for="flexCheckDefault">
                     Voto Massimo:
                 </label>
-                <input class="form-control" type="number" name="voto-max" id="flexCheckDefault" min="1" max="10">
+                <input class="form-control" type="number" name="voto-max" min="1" max="10">
+            </div>
+            <div class="w-25 mb-3">
+                <label class="form-label" for="flexCheckDefault">
+                    Linguaggio preferito:
+                </label>
+                <input class="form-control" type="text" name="fav-lang">
             </div>
             <button type="submit" class="btn btn-primary px-4 me-2">Filtra</button>
             <button type="reset" class="btn btn-warning px-4">Reset</button>
