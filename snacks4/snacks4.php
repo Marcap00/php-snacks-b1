@@ -138,7 +138,7 @@ if (isset($_GET['text-searched']) && !empty($_GET['text-searched'])) {
                     Cerca:
                 </label>
                 <input class="form-control" id="text-searched" type="text-searched" name="text-searched"
-                    value="<?= $_GET['text-searched'] ?>">
+                    value="<?= isset($_GET['text-searched']) ? $_GET['text-searched'] : ''  ?>">
             </div>
             <div class="d-flex gap-3">
                 <div class="w-50 mb-3">
@@ -146,14 +146,14 @@ if (isset($_GET['text-searched']) && !empty($_GET['text-searched'])) {
                         Età massima:
                     </label>
                     <input class="form-control" id="max-age" type="number" name="max-age" min="15" max="100"
-                        value="<?= $_GET['max-age'] ?>">
+                        value="<?= isset($_GET['max-age']) ? $_GET['max-age'] : ''  ?>">
                 </div>
                 <div class="w-50 mb-3">
                     <label class="form-label" for="min-age">
                         Età minima:
                     </label>
                     <input class="form-control" id="min-age" type="number" name="min-age" min="15" max="100"
-                        value="<?= $_GET['min-age'] ?>">
+                        value="<?= isset($_GET['min-age']) ? $_GET['min-age'] : '' ?>">
                 </div>
             </div>
             <div class="d-flex gap-3">
@@ -162,21 +162,22 @@ if (isset($_GET['text-searched']) && !empty($_GET['text-searched'])) {
                         Voto Massimo:
                     </label>
                     <input class="form-control" id="voto-max" type="number" name="voto-max" min="1" max="10"
-                        value="<?= $_GET['voto-max'] ?>">
+                        value="<?= isset($_GET['voto-max']) ? $_GET['voto-max'] : '' ?>">
                 </div>
                 <div class="w-50 mb-3">
                     <label class="form-label" for="voto-min">
                         Voto Minimo:
                     </label>
                     <input class="form-control" id="voto-min" type="number" name="voto-min" min="1" max="10"
-                        value="<?= $_GET['voto-min'] ?>">
+                        value="<?= isset($_GET['voto-min']) ? $_GET['voto-min'] : '' ?>">
                 </div>
             </div>
             <div class="w-50 mb-3">
                 <label class="form-label" for="fav-lang">
                     Linguaggio preferito:
                 </label>
-                <input type="text" class="form-control" id="fav-lang" name="fav-lang" value="<?= $_GET['fav-lang'] ?>">
+                <input type="text" class="form-control" id="fav-lang" name="fav-lang"
+                    value="<?= isset($_GET['fav-lang']) ? $_GET['fav-lang'] : '' ?>">
             </div>
             <button type="submit" class="btn btn-primary px-4 me-2">Filtra</button>
             <button type="reset" class="btn btn-warning px-4">Reset</button>
@@ -202,7 +203,6 @@ if (isset($_GET['text-searched']) && !empty($_GET['text-searched'])) {
             </div>
         <?php } ?>
     </div>
-
 </body>
 
 </html>
