@@ -1,8 +1,8 @@
 <?php
 include __DIR__ . '/snacks4data.php';
 
-$classiFiltrate;
-$currentArray;
+$classiFiltrate = [];
+$errorMessage = '';
 // if (isset($_GET['voto-suff']) && $_GET['voto-suff'] === 'on') {
 //     $classiFiltrate = [];
 //     foreach ($classi as $classe => $studenti) {
@@ -17,22 +17,27 @@ $currentArray;
 // } else {
 //     $classiFiltrate = $classi;
 // }
-if (isset($_GET['voto-min']) && isset($_GET['voto-max']) && $_GET['voto-min'] < $_GET['voto-max'] && !empty($_GET['voto-min']) && !empty($_GET['voto-max'])) {
+
+if ((!isset($_GET['voto-max']) || empty($_GET['voto-max'])) || (!isset($_GET['voto-min']) || empty($_GET['voto-max'])) || $_GET['voto-max'] > $_GET['voto-min']) {
+    var_dump('Entrato');
     // Controllo del voto massimo
-    if ($_GET['voto-max'] >= 1 && $_GET['voto-max'] <= 10) {
+    if (isset($_GET['voto-max']) && !empty($_GET['voto-max']) && $_GET['voto-max'] >= 1 && $_GET['voto-max'] <= 10) {
         $classiVotoMax = [];
         foreach ($classi as $classe => $studenti) {
             $classiVotoMax[$classe] = [];
             foreach ($studenti as $studente) {
+
                 if ($studente['voto_medio'] <= $_GET['voto-max']) {
                     array_push($classiVotoMax[$classe], $studente);
                 }
             }
             $classiFiltrate = $classiVotoMax;
         }
+    } else {
+        $classiFiltrate = $classi;
     }
     // Controllo del voto minimo
-    if ($_GET['voto-min'] >= 1 && $_GET['voto-min'] <= 10) {
+    if (isset($_GET['voto-min']) && !empty($_GET['voto-min']) && $_GET['voto-min'] >= 1 && $_GET['voto-min'] <= 10) {
         $classiVotoMin = [];
         foreach ($classiFiltrate as $classe => $studenti) {
             $classiVotoMin[$classe] = [];
@@ -45,8 +50,12 @@ if (isset($_GET['voto-min']) && isset($_GET['voto-max']) && $_GET['voto-min'] < 
         }
     }
 } else {
+    // var_dump(isset($_GET['voto-max']));
+    var_dump('non entrato');
     $classiFiltrate = $classi;
+    $errorMessage = 'Hai inserito dati non validi!';
 }
+
 
 // Controllo del linguaggio preferito
 if (isset($_GET['fav-lang']) && !empty($_GET['fav-lang'])) {
@@ -62,9 +71,10 @@ if (isset($_GET['fav-lang']) && !empty($_GET['fav-lang'])) {
     }
 }
 
-if (isset($_GET['max-age']) && isset($_GET['min-age']) && $_GET['max-age'] > $_GET['min-age'] && !empty($_GET['max-age']) && !empty($_GET['min-age'])) {
+if ((!isset($_GET['max-age']) || empty($_GET['max-age'])) || (!isset($_GET['min-age']) || empty($_GET['min-age'])) || $_GET['max-age'] > $_GET['min-age']) {
+    var_dump('Entrato');
     // Controllo l'età massima dello studente
-    if ($_GET['max-age'] >= 15 && $_GET['max-age'] <= 100) {
+    if (isset($_GET['max-age']) && !empty($_GET['max-age']) && $_GET['max-age'] >= 15 && $_GET['max-age'] <= 100) {
         $classiAge = [];
         foreach ($classiFiltrate as $classe => $studenti) {
             $classiAge[$classe] = [];
@@ -77,7 +87,7 @@ if (isset($_GET['max-age']) && isset($_GET['min-age']) && $_GET['max-age'] > $_G
         }
     }
     // Controllo l'età minima dello studente
-    if ($_GET['min-age'] >= 15 && $_GET['min-age'] <= 100) {
+    if (isset($_GET['min-age']) && !empty($_GET['min-age']) && $_GET['min-age'] >= 15 && $_GET['min-age'] <= 100) {
         $classiAge = [];
         foreach ($classiFiltrate as $classe => $studenti) {
             $classiAge[$classe] = [];
@@ -89,8 +99,11 @@ if (isset($_GET['max-age']) && isset($_GET['min-age']) && $_GET['max-age'] > $_G
             $classiFiltrate = $classiAge;
         }
     }
+} else {
+    $classiFiltrate = $classi;
+    $errorMessage = 'Hai inserito dati non validi!';
+    var_dump('non entrato');
 }
-
 // Controllo del testo cercato
 if (isset($_GET['text-searched']) && !empty($_GET['text-searched'])) {
     $classiName = [];
@@ -179,6 +192,7 @@ if (isset($_GET['text-searched']) && !empty($_GET['text-searched'])) {
                 <input type="text" class="form-control" id="fav-lang" name="fav-lang"
                     value="<?= isset($_GET['fav-lang']) ? $_GET['fav-lang'] : '' ?>">
             </div>
+            <p class="text-danger"><?= $errorMessage ?></p>
             <button type="submit" class="btn btn-primary px-4 me-2">Filtra</button>
             <button type="reset" class="btn btn-warning px-4">Reset</button>
         </form>
