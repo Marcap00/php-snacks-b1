@@ -8,7 +8,7 @@ $classi = [
             "anni" => 23,
             "voto_medio" => 8.5,
             "linguaggio_preferito" => "PHP",
-            "immagine" => "https://robohash.org/student",
+            "immagine" => "https://robohash.org/studentmarcorossi",
         ],
         [
             "id" => 2,
@@ -17,7 +17,7 @@ $classi = [
             "anni" => 27,
             "voto_medio" => 3.5,
             "linguaggio_preferito" => "JS",
-            "immagine" => "https://robohash.org/student",
+            "immagine" => "https://robohash.org/studentlucaverdi",
         ],
         [
             "id" => 3,
@@ -26,7 +26,7 @@ $classi = [
             "anni" => 23,
             "voto_medio" => 5.5,
             "linguaggio_preferito" => "CSS",
-            "immagine" => "https://robohash.org/studentfem",
+            "immagine" => "https://robohash.org/studentgiuliabianchi",
         ],
         [
             "id" => 4,
@@ -35,7 +35,7 @@ $classi = [
             "anni" => 27,
             "voto_medio" => 8.0,
             "linguaggio_preferito" => "HTML",
-            "immagine" => "https://robohash.org/studentfem",
+            "immagine" => "https://robohash.org/studentsofiarusso",
         ],
         [
             "id" => 5,
@@ -44,7 +44,7 @@ $classi = [
             "anni" => 22,
             "voto_medio" => 7.5,
             "linguaggio_preferito" => "PHP",
-            "immagine" => "https://robohash.org/student",
+            "immagine" => "https://robohash.org/studentandreaferrari",
         ],
     ],
     "Classe 2A" => [
@@ -55,7 +55,7 @@ $classi = [
             "anni" => 27,
             "voto_medio" => 9.0,
             "linguaggio_preferito" => "JS",
-            "immagine" => "https://robohash.org/studentfem",
+            "immagine" => "https://robohash.org/studentfrancescaricci",
         ],
         [
             "id" => 22,
@@ -64,7 +64,7 @@ $classi = [
             "anni" => 23,
             "voto_medio" => 4.3,
             "linguaggio_preferito" => "HTML",
-            "immagine" => "https://robohash.org/student",
+            "immagine" => "https://robohash.org/studentmatteomoretti",
         ],
         [
             "id" => 30,
@@ -73,7 +73,7 @@ $classi = [
             "anni" => 27,
             "voto_medio" => 5.4,
             "linguaggio_preferito" => "CSS",
-            "immagine" => "https://robohash.org/student",
+            "immagine" => "https://robohash.org/studentalessandrolombardi",
         ],
         [
             "id" => 33,
@@ -82,7 +82,7 @@ $classi = [
             "anni" => 22,
             "voto_medio" => 8.4,
             "linguaggio_preferito" => "PHP",
-            "immagine" => "https://robohash.org/studentfem",
+            "immagine" => "https://robohash.org/studentelenaconti",
         ],
         [
             "id" => 20,
@@ -91,7 +91,7 @@ $classi = [
             "anni" => 27,
             "voto_medio" => 9.5,
             "linguaggio_preferito" => "JS",
-            "immagine" => "https://robohash.org/studentfem",
+            "immagine" => "https://robohash.org/studentvaleriagallo",
         ],
     ],
     "Classe 3A" => [
@@ -102,7 +102,7 @@ $classi = [
             "anni" => 22,
             "voto_medio" => 6.9,
             "linguaggio_preferito" => "CSS",
-            "immagine" => "https://robohash.org/student",
+            "immagine" => "https://robohash.org/studentsimonefabbri",
         ],
         [
             "id" => 32,
@@ -111,7 +111,7 @@ $classi = [
             "anni" => 27,
             "voto_medio" => 5.3,
             "linguaggio_preferito" => "HTML",
-            "immagine" => "https://robohash.org/studentfem",
+            "immagine" => "https://robohash.org/studentchiarariva",
         ],
         [
             "id" => 33,
@@ -120,7 +120,7 @@ $classi = [
             "anni" => 22,
             "voto_medio" => 8.2,
             "linguaggio_preferito" => "PHP",
-            "immagine" => "https://robohash.org/student",
+            "immagine" => "https://robohash.org/studentlorenzoorlando",
         ],
         [
             "id" => 34,
@@ -129,7 +129,7 @@ $classi = [
             "anni" => 22,
             "voto_medio" => 4.8,
             "linguaggio_preferito" => "JS",
-            "immagine" => "https://robohash.org/studentfem",
+            "immagine" => "https://robohash.org/studentmartamartini",
         ],
         [
             "id" => 35,
@@ -138,7 +138,7 @@ $classi = [
             "anni" => 27,
             "voto_medio" => 8.1,
             "linguaggio_preferito" => "CSS",
-            "immagine" => "https://robohash.org/student",
+            "immagine" => "https://robohash.org/studentgiovannigiuliani",
         ],
     ],
     "Classe 4A" => [
@@ -149,7 +149,7 @@ $classi = [
             "anni" => 30,
             "voto_medio" => 4.2,
             "linguaggio_preferito" => "PHP",
-            "immagine" => "https://robohash.org/studentfem",
+            "immagine" => "https://robohash.org/studentsilviadeluca",
         ],
         [
             "id" => 47,
@@ -158,7 +158,7 @@ $classi = [
             "anni" => 30,
             "voto_medio" => 5.1,
             "linguaggio_preferito" => "HTML",
-            "immagine" => "https://robohash.org/student",
+            "immagine" => "https://robohash.org/studentfedericocosta",
         ],
         [
             "id" => 48,
@@ -167,7 +167,7 @@ $classi = [
             "anni" => 22,
             "voto_medio" => 3.7,
             "linguaggio_preferito" => "JS",
-            "immagine" => "https://robohash.org/student",
+            "immagine" => "https://robohash.org/studentmichelecattaneo",
         ],
         [
             "id" => 49,
@@ -176,7 +176,7 @@ $classi = [
             "anni" => 30,
             "voto_medio" => 8.6,
             "linguaggio_preferito" => "CSS",
-            "immagine" => "https://robohash.org/studentfem",
+            "immagine" => "https://robohash.org/studentannaserra",
         ],
         [
             "id" => 50,
@@ -185,7 +185,7 @@ $classi = [
             "anni" => 30,
             "voto_medio" => 4.0,
             "linguaggio_preferito" => "PHP",
-            "immagine" => "https://robohash.org/student",
+            "immagine" => "https://robohash.org/studentantoniocervi",
         ],
     ],
     "Classe 5A" => [
@@ -196,7 +196,7 @@ $classi = [
             "anni" => 33,
             "voto_medio" => 8.7,
             "linguaggio_preferito" => "JS",
-            "immagine" => "https://robohash.org/student",
+            "immagine" => "https://robohash.org/studentdaideferrero",
         ],
         [
             "id" => 62,
@@ -205,7 +205,7 @@ $classi = [
             "anni" => 33,
             "voto_medio" => 4.1,
             "linguaggio_preferito" => "PHP",
-            "immagine" => "https://robohash.org/studentfem",
+            "immagine" => "https://robohash.org/studentsaraleoni",
         ],
         [
             "id" => 63,
@@ -214,7 +214,7 @@ $classi = [
             "anni" => 33,
             "voto_medio" => 4.4,
             "linguaggio_preferito" => "HTML",
-            "immagine" => "https://robohash.org/student",
+            "immagine" => "https://robohash.org/studentdanielebertoni",
         ],
         [
             "id" => 64,
@@ -223,7 +223,7 @@ $classi = [
             "anni" => 30,
             "voto_medio" => 5.0,
             "linguaggio_preferito" => "CSS",
-            "immagine" => "https://robohash.org/studentfem",
+            "immagine" => "https://robohash.org/studentgiadaragusa",
         ],
         [
             "id" => 65,
@@ -232,7 +232,7 @@ $classi = [
             "anni" => 30,
             "voto_medio" => 6.7,
             "linguaggio_preferito" => "PHP",
-            "immagine" => "https://robohash.org/student",
+            "immagine" => "https://robohash.org/studentclaudiolanza",
         ],
     ],
 ];

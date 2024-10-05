@@ -1,0 +1,22 @@
+body {
+    background-color: #4682B4;
+}
+
+.btn-primaryblue,
+.bg-primaryblue {
+    background-color: #4682B4;
+    color: white;
+}
+
+.btn-primaryblue:hover {
+    background-color: #7fadd3;
+    color: white;
+}
+
+.bg-secondaryblue {
+    background-color: #acc8df;
+}
+
+.text-primaryblue {
+    color: #4682B4;
+}

@@ -134,6 +134,8 @@ if (isset($_GET['text-searched']) && !empty($_GET['text-searched'])) {
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css'
         integrity='sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg=='
         crossorigin='anonymous' />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -151,7 +153,8 @@ if (isset($_GET['text-searched']) && !empty($_GET['text-searched'])) {
                     Cerca:
                 </label>
                 <input class="form-control" id="text-searched" type="text-searched" name="text-searched"
-                    value="<?= isset($_GET['text-searched']) ? $_GET['text-searched'] : ''  ?>">
+                    value="<?= isset($_GET['text-searched']) ? $_GET['text-searched'] : ''  ?>"
+                    placeholder="Marco Rossi">
             </div>
             <div class="d-flex gap-3">
                 <div class="w-50 mb-3">
@@ -159,14 +162,14 @@ if (isset($_GET['text-searched']) && !empty($_GET['text-searched'])) {
                         Età massima:
                     </label>
                     <input class="form-control" id="max-age" type="number" name="max-age" min="15" max="100"
-                        value="<?= isset($_GET['max-age']) ? $_GET['max-age'] : ''  ?>">
+                        value="<?= isset($_GET['max-age']) ? $_GET['max-age'] : ''  ?>" placeholder="65">
                 </div>
                 <div class="w-50 mb-3">
                     <label class="form-label" for="min-age">
                         Età minima:
                     </label>
                     <input class="form-control" id="min-age" type="number" name="min-age" min="15" max="100"
-                        value="<?= isset($_GET['min-age']) ? $_GET['min-age'] : '' ?>">
+                        value="<?= isset($_GET['min-age']) ? $_GET['min-age'] : '' ?>" placeholder="15">
                 </div>
             </div>
             <div class="d-flex gap-3">
@@ -175,14 +178,14 @@ if (isset($_GET['text-searched']) && !empty($_GET['text-searched'])) {
                         Voto Massimo:
                     </label>
                     <input class="form-control" id="voto-max" type="number" name="voto-max" min="1" max="10"
-                        value="<?= isset($_GET['voto-max']) ? $_GET['voto-max'] : '' ?>">
+                        value="<?= isset($_GET['voto-max']) ? $_GET['voto-max'] : '' ?>" placeholder="10">
                 </div>
                 <div class="w-50 mb-3">
                     <label class="form-label" for="voto-min">
                         Voto Minimo:
                     </label>
                     <input class="form-control" id="voto-min" type="number" name="voto-min" min="1" max="10"
-                        value="<?= isset($_GET['voto-min']) ? $_GET['voto-min'] : '' ?>">
+                        value="<?= isset($_GET['voto-min']) ? $_GET['voto-min'] : '' ?>" placeholder="1">
                 </div>
             </div>
             <div class="w-50 mb-3">
@@ -190,22 +193,24 @@ if (isset($_GET['text-searched']) && !empty($_GET['text-searched'])) {
                     Linguaggio preferito:
                 </label>
                 <input type="text" class="form-control" id="fav-lang" name="fav-lang"
-                    value="<?= isset($_GET['fav-lang']) ? $_GET['fav-lang'] : '' ?>">
+                    value="<?= isset($_GET['fav-lang']) ? $_GET['fav-lang'] : '' ?>" placeholder="JS">
             </div>
             <p class="text-danger"><?= $errorMessage ?></p>
-            <button type="submit" class="btn btn-primary px-4 me-2">Filtra</button>
-            <button type="reset" class="btn btn-warning px-4">Reset</button>
+            <button type="submit" class="btn btn-primaryblue px-4 me-2">Filtra</button>
+            <button type="reset" class="btn btn-warning text-white px-4">Reset</button>
         </form>
         <?php foreach ($classiFiltrate as $classe => $studenti) { ?>
-            <div class="card p-4  my-4 rounded-3 mx-auto">
-                <h2><?= $classe ?></h2>
+            <div class="card bg-secondaryblue p-4 my-4 rounded-3 mx-auto">
+                <h2 class="text-primaryblue fw-semibold mb-4"><?= $classe ?></h2>
                 <div class="row">
                     <?php foreach ($studenti as $studente) { ?>
                         <div class="col-4">
-                            <div class="card mb-3">
-                                <img src="<?= $studente['immagine'] ?>" class="card-img-top" alt="<?= $studente['nome'] ?>">
-                                <div class="card-body">
-                                    <h5 class="card-title"><?= $studente['nome'] . ' ' . $studente['cognome'] ?></h5>
+                            <div class="card bg-secondaryblue mb-3 border-0">
+                                <img class="w-75 bg-white rounded-circle mb-2 mx-auto" src="<?= $studente['immagine'] ?>"
+                                    class="card-img-top" alt="<?= $studente['nome'] ?>">
+                                <div class="card-body rounded-3 bg-primaryblue">
+                                    <h4 class="card-title fw-semibold"><?= $studente['nome'] . ' ' . $studente['cognome'] ?>
+                                    </h4>
                                     <p class="card-text">Anni: <?= $studente['anni'] ?></p>
                                     <p class="card-text">Voto medio: <?= $studente['voto_medio'] ?></p>
                                     <p class="card-text">Linguaggio preferito: <?= $studente['linguaggio_preferito'] ?></p>
