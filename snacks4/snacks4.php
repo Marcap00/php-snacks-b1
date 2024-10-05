@@ -19,7 +19,7 @@ $errorMessage = '';
 // }
 
 if ((!isset($_GET['voto-max']) || empty($_GET['voto-max'])) || (!isset($_GET['voto-min']) || empty($_GET['voto-max'])) || $_GET['voto-max'] > $_GET['voto-min']) {
-    var_dump('Entrato');
+    // var_dump('Entrato');
     // Controllo del voto massimo
     if (isset($_GET['voto-max']) && !empty($_GET['voto-max']) && $_GET['voto-max'] >= 1 && $_GET['voto-max'] <= 10) {
         $classiVotoMax = [];
@@ -51,7 +51,7 @@ if ((!isset($_GET['voto-max']) || empty($_GET['voto-max'])) || (!isset($_GET['vo
     }
 } else {
     // var_dump(isset($_GET['voto-max']));
-    var_dump('non entrato');
+    // var_dump('non entrato');
     $classiFiltrate = $classi;
     $errorMessage = 'Hai inserito dati non validi!';
 }
@@ -72,7 +72,7 @@ if (isset($_GET['fav-lang']) && !empty($_GET['fav-lang'])) {
 }
 
 if ((!isset($_GET['max-age']) || empty($_GET['max-age'])) || (!isset($_GET['min-age']) || empty($_GET['min-age'])) || $_GET['max-age'] > $_GET['min-age']) {
-    var_dump('Entrato');
+    // var_dump('Entrato');
     // Controllo l'età massima dello studente
     if (isset($_GET['max-age']) && !empty($_GET['max-age']) && $_GET['max-age'] >= 15 && $_GET['max-age'] <= 100) {
         $classiAge = [];
@@ -102,7 +102,7 @@ if ((!isset($_GET['max-age']) || empty($_GET['max-age'])) || (!isset($_GET['min-
 } else {
     $classiFiltrate = $classi;
     $errorMessage = 'Hai inserito dati non validi!';
-    var_dump('non entrato');
+    // var_dump('non entrato');
 }
 // Controllo del testo cercato
 if (isset($_GET['text-searched']) && !empty($_GET['text-searched'])) {
