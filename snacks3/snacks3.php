@@ -37,16 +37,23 @@ $db = [
 </head>
 
 <body>
-    <div class="bg-primary">
-        <h2>Teachers</h2>
-        <ul>
-            <?php foreach ($db as $key => $element) { ?>
-            <li>
-                <?= $element['name'] . ' ' . $element['lastname']; ?>
-            </li>
-            <?php } ?>
-        </ul>
-    </div>
+    <?php foreach ($db as $key => $element) : ?>
+        <div class="bg-<?= $key === 'teachers' ? 'primary' : 'secondary' ?>">
+
+            <h2><?= $key ?></h2>
+
+            <ul>
+                <?php foreach ($element as $personKey => $personValue) : ?>
+                    <li>
+
+                        <?= "{$personValue['name']} {$personValue['lastname']}" ?>
+
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+
+        </div>
+    <?php endforeach; ?>
 </body>
 
 </html>
