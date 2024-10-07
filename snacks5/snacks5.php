@@ -14,8 +14,14 @@
 </head>
 
 <body>
-    <label class="form-label" for="user-text"></label>
-    <input class="form-control" id="user-text" type="text" name="userText">
+    <form action="function.php" method="GET" class="p-2">
+        <div class="mb-3">
+            <label class="form-label" for="user-text">Inserisci una parola:</label>
+            <input class="form-control w-25" id="user-text" type="text" name="userText">
+
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 </body>
 
 </html>
