@@ -1,3 +1,5 @@
+<!-- Creare una funzione che controlli se una parola (o una frase) sia palindroma, senza usare funzioni built-in, e ritorni true se lo e', false altrimenti. Testarla attraverso una chiamata GET via form. -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +14,8 @@
 </head>
 
 <body>
-
+    <label class="form-label" for="user-text"></label>
+    <input class="form-control" id="user-text" type="text" name="userText">
 </body>
 
 </html>
